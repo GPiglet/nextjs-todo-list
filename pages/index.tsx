@@ -3,12 +3,22 @@ import type { NextPage } from 'next'
 
 import { useRouter } from 'next/router'
 
+import { styled, alpha } from '@mui/material/styles';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 import { UserContext, UserType } from '../contexts/UserContext';
 import MainWrapper from '../components/Layout/MainWrapper';
+
+const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
+  '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus': {
+    outline: 'none',
+  },
+  '&.MuiDataGrid-root .MuiDataGrid-cell:focus': {
+    outline: 'none',
+  },
+}));
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -67,7 +77,7 @@ const Home: NextPage = () => {
   return (
     <MainWrapper menus={menus}>
       <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
+        <StyledDataGrid
           rows={users}
           columns={columns}
           pageSize={5}
