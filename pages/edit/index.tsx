@@ -40,6 +40,11 @@ export const EditPage: NextPage = () => {
   }, [uid])
 
   const onSave = () => {
+    if ( !username )
+    {
+      setOpenSnackbar(true);
+      return;
+    }
     if ( uid )
     {
       let selectedUser = userContext.list.filter((user)=>user.id==uid)[0];
@@ -125,7 +130,7 @@ export const EditPage: NextPage = () => {
         }}
       >
         <Alert severity="warning" sx={{ width: '100%' }}>
-          Please select the user.
+          Please input username.
         </Alert>
       </Snackbar>
     </MainWrapper>
