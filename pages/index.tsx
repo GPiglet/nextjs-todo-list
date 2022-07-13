@@ -10,6 +10,7 @@ import Alert from '@mui/material/Alert';
 
 import { UserContext, UserType } from '../contexts/UserContext';
 import MainWrapper from '../components/Layout/MainWrapper';
+import UserApi from '../services/User';
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   '&.MuiDataGrid-root .MuiDataGrid-columnHeader:focus': {
@@ -43,9 +44,13 @@ const Home: NextPage = () => {
       setOpenSnackbar(true);
       return;
     }
-    userContext.push(
-      [...userContext.list.filter((user) =>selectedRows.indexOf(user.id) == -1)], true
-    );
+
+    UserApi.remove((res: any)=>{
+      userContext.push(
+        [...userContext.list.filter((user) =>selectedRows.indexOf(user.id) == -1)], true
+      );
+    }, selectedRows);
+    
   }
 
   const menus = [
@@ -69,7 +74,7 @@ const Home: NextPage = () => {
   const users = userContext.list;
   
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'id', headerName: 'ID', width: 150 },
     { field: 'username', headerName: 'User name', width: 150 },
     { field: 'email', headerName: 'Email', width: 200, sortable: false },
     { field: 'address', headerName: 'Address', width: 200, sortable: false },

@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
 import { UserContext, UserType } from '../../contexts/UserContext';
+import UserApi from '../../services/User';
 import MainWrapper from '../../components/Layout/MainWrapper';
 
 export const EditPage: NextPage = () => {
@@ -45,28 +46,27 @@ export const EditPage: NextPage = () => {
       setOpenSnackbar(true);
       return;
     }
-    if ( uid )
-    {
-      let selectedUser = userContext.list.filter((user)=>user.id==uid)[0];
-      selectedUser.username = username;
-      selectedUser.email = email;
-      selectedUser.address = address;
-    }
-    else
-    {
-      const users = userContext.list;
-      let id:number = users.length;
-      users.forEach((user) => {
-        if ( user.id >= id ) id = user.id + 1;
-      })
-      userContext.push([{
-        id,
-        username,
-        email,
-        address
-      }], false);
-    }
-    router.push('/');
+    
+    UserApi.create((savedUser: any)=>{
+      if ( uid )
+      {
+        let selectedUser = userContext.list.filter((user)=>user.id==uid)[0];
+        selectedUser.username = savedUser.username;
+        selectedUser.email = savedUser.email;
+        selectedUser.address = savedUser.address;
+      }
+      else
+      {
+        userContext.push([savedUser], false);
+      }
+      router.push('/');
+    }, {
+      id: uid,
+      username,
+      email,
+      address,
+    })
+    
   }
   const onCancel = () => {
     router.push('/');
