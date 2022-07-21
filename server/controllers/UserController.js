@@ -3,16 +3,16 @@ const env = require('dotenv');
 var users = [
 	{
 		id: Date.now(),
-		username: 'piglet',
-		email: 'piglet@gmail.com',
-		address: 'node street',
+		username: 'Illia Sarafyn',
+		email: 's.illia@gmail.com',
+		address: 'express street in Node',
 	},
 
 	{
 		id: Date.now()+1,
 		username: 'smartdev',
 		email: 'smartdev@gmail.com',
-		address: 'express street',
+		address: 'asp.net street in CSharpe',
 	}
 ]
 exports.getList = (req, res, next) => {

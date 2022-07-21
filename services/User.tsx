@@ -29,6 +29,7 @@ const remove = (subscriber: any, ids: Array<number>) => {
     if ( ids.length == 0 ) return;
     instance.delete('/' + ids.join(','))
     .then((res)=>{
+        console.log(res.data)
         subscriber(res.data);
     })
 }
