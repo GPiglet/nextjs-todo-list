@@ -7,7 +7,7 @@ import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
-import { UserContext, UserType } from '../../contexts/UserContext';
+import UserContext from '../../contexts/UserContext';
 import UserApi from '../../services/User';
 import MainWrapper from '../../components/Layout/MainWrapper';
 

@@ -5,9 +5,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import MenuType from '../../Types/MenuType';
 
-const ResponsiveHeader = (props: any) => {
-    const menus: Array<any> = props.menus;
+type HeaderProps = {menus?: Array<MenuType>};
+
+const ResponsiveHeader = ({menus = []}: HeaderProps) => {
   return (
     <AppBar position="fixed" color="transparent"
       sx = {{

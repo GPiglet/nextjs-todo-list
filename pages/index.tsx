@@ -8,7 +8,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-import { UserContext, UserType } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 import MainWrapper from '../components/Layout/MainWrapper';
 import UserApi from '../services/User';
 

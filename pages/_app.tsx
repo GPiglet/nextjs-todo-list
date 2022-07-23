@@ -1,7 +1,8 @@
 import '../styles/globals.css'
 import * as React from 'react';
 import type { AppProps } from 'next/app'
-import { UserContext, UserType } from '../contexts/UserContext';
+import UserType from '../Types/UserType'
+import UserContext  from '../contexts/UserContext';
 import UserApi from '../services/User';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -10,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       if ( isReset )
           setUsers(newUsers);
       else
-          setUsers([...users, ...newUsers]);
+          setUsers((prevUsers) => [...prevUsers, ...newUsers]);
   };
 
   React.useEffect(() => {
