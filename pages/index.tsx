@@ -97,6 +97,7 @@ const Home: NextPage = () => {
         autoHideDuration={2000}
         onClose={()=>setOpenSnackbar(false)}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        data-testid="warning-alert"
         sx={{
           mt: 10,
         }}
