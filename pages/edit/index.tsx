@@ -33,10 +33,14 @@ export const EditPage: NextPage = () => {
   React.useEffect(() => {
     if ( uid )
     {
-      const selectedUser = userContext.list.filter((user)=>user.id==uid)[0];
-      setUsername(selectedUser.username);
-      setEmail(selectedUser.email || '');
-      setAddress(selectedUser.address || '');
+      const selectedUsers = userContext.list.filter((user)=>user.id==uid);
+      if ( selectedUsers.length > 0 )
+      {
+        const selectedUser = selectedUsers[0];
+        setUsername(selectedUser.username);
+        setEmail(selectedUser.email || '');
+        setAddress(selectedUser.address || '');
+      }
     }
   }, [uid])
 
@@ -98,6 +102,7 @@ export const EditPage: NextPage = () => {
           autoFocus
           value={username}
           onChange={onUsernameChange}
+          inputProps={{"data-testid":"input-username"}}
         />
         <TextField
           margin="normal"
@@ -108,6 +113,7 @@ export const EditPage: NextPage = () => {
           autoComplete="email"
           value={email}
           onChange={onEmailChange}
+          inputProps={{"data-testid":"input-email"}}
         />
         <TextField
           margin="normal"
@@ -118,6 +124,7 @@ export const EditPage: NextPage = () => {
           autoComplete="address"
           value={address}
           onChange={onAddressChange}
+          inputProps={{"data-testid":"input-address"}}
         />
       </Box>
       <Snackbar
@@ -128,6 +135,7 @@ export const EditPage: NextPage = () => {
         sx={{
           mt: 10,
         }}
+        data-testid="warning-alert"
       >
         <Alert severity="warning" sx={{ width: '100%' }}>
           Please input username.
