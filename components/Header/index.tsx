@@ -23,10 +23,10 @@ const ResponsiveHeader = ({menus = []}: HeaderProps) => {
             minHeight: {xs: 80},
           }}
         >
-          <Typography component="a" href="/">
+          <Typography component="a" href="/" data-testid="heading">
             React To Do List
           </Typography>
-          <Box sx={{ flexGrow: 1, justifyContent: 'flex-end', display: 'flex'}}>
+          <Box sx={{ flexGrow: 1, justifyContent: 'flex-end', display: 'flex'}} data-testid="menu">
             {menus.map((menu, index) => (
               <Button
                 key={index}
